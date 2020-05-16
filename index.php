@@ -8,15 +8,18 @@
     <h1>Store & Retail</h1>
 
     <div class="">
-      <form class="" action="index.html" method="post">
-        <table>
-          <tr>
-            <td>Buscar<input type="text" name="" value=""></td>
-            <td>Registrarme<input type="button" name="registrar" value="Aquí"></td>
-            <td>Carrito<input type="button" name="carrito" value="Agregar"></td>
-          </tr>
-        </table>
+      <form action="buscar_all_productos.php" method="post">
+        <label>Buscar: <input type="text" name="buscar"></label>
+        <input type="submit" name="enviando" value="Buscar">
       </form>
+    </div>
+
+    <div class="">
+      <a href="form_resgistrar_users.php"><input type="button" name="registrarme" value="Registrarme"></a>
+    </div>
+
+    <div class="">
+      <a href="carrito.php"><input type="button" name="carrito" value="Carrito"></a>
     </div>
 
     <div class="">
