@@ -19,7 +19,7 @@
 
     <div class="">
 
-      <form class="" action="registar_products.php" method="post">
+      <form class="" action="registar_productos.php" method="post">
         <label for="">Código <input type="text" name="idP" id="idP" value=""></label><br>
         <label for="">Nombre <input type="text" name="nombreP" id="nombreP" value=""></label><br>
         <label for="">Precio Unit <input type="text" name="precioUnit" id="precioUnit" value=""></label><br>
