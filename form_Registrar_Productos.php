@@ -13,7 +13,7 @@
       <p>Este Formulario Registra los Productos provenientes
       de los diferentes proveedores.</p>
 
-      <p>Este formulario solo va a estar visible para el Administrador de
+      <p>Este formulario es de uso exclusivo del Administrador de
         la Tienda.</p>
     </div>
 
