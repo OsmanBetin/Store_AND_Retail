@@ -16,13 +16,8 @@
 
     <div class="">
       <form class="" action="verificarCliente.php" method="post">
-        <table>
-          <tr>
-            <td>Ingrese Id Cliente <input type="text" name="id_cliente" id="id_cliente"> </td>
-            <td><input type="submit" name="id_cliente" id="id_cliente" value="Enviar"></td>
-          </tr>
-        </table>
-
+          <label for="">Ingrese Id Cliente <input type="text" name="id_cliente" id="id_cliente"></label>
+          <input type="submit" name="cliente" value="Enviar">
       </form>
     </div>
 
