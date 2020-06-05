@@ -15,7 +15,7 @@
     </div>
 
     <div class="">
-      <a href="form_resgistrar_users.php"><input type="button" name="registrarme" value="Registrarme"></a>
+      <a href="form_registrar_users.php"><input type="button" name="registrarme" value="Registrarme"></a>
     </div>
 
     <div class="">
