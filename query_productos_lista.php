@@ -57,7 +57,7 @@
       //los resultados de la consulta
       $ok=mysqli_stmt_bind_result($resultado, $Id, $nom_arti);
 
-      echo "Articulos encontrados: <br><br>";
+      //echo "Articulos encontrados: <br><br>";
 
       while(mysqli_stmt_fetch($resultado)){
 
