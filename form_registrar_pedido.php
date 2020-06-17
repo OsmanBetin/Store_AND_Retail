@@ -1,45 +1,92 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Registar Pedido</title>
-  </head>
-  <body>
-    <div class="">
-      <h1>Store & Retail</h1>
+<?php
 
-      <p>Quiero Realizar un Pedido!</p>
-      <p>Este es un Formulario para agregar todos los Productos
-        que un cliente desea comprar.</p>
-    </div>
+  function generarFecha(){
 
-<!--      <form class="" action="index.html" method="post">  -->
-<!--         <label for="">Código <input type="text" name="" value=""></label><br>  -->
-<!--         <label for="">Nombre del Producto <input type="text" name="" value=""></label><br>   -->
+    $anho=date("Y");
+    $mes=date("m");
+    $dia=date("d");
+    $hora=date("H");
+    $minuto=date("i");
 
-<!-- select in HTML -->
-    <select class="" name="">
-      <option value="0">Seleccione Producto</option>
+    $fullDate=$anho."-".$mes."-".$dia." ".$hora.":".$minuto;
+    return $fullDate;
+    }
 
-      <?php
+    function generarIdPeiddo(){
 
-        require("query_productos_lista.php");
+      //Generar ID Al Azar
+      $numAzar = rand(1,1000);
+      //echo "Numero al Azar " . $numAzar . "<br>";
 
-      //  $ok=mysqli_stmt_bind_result($resultado, $Id, $nom_arti);
+      $numAzar2 = rand(0,25);
+      //echo "Numero 2 al Azar" . $numAzar2 . "<br>";
+      //Obetner Letra al Azar
+      $alfab="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        //echo "Articulos encontrados: <br><br>";
+      $letra="";
+      for($i=0; $i<strlen($alfab); $i++){
 
-      //  while(mysqli_stmt_fetch($resultado)){
+        if($numAzar2==$i){
 
-          //echo $Id . " " . $nom_arti . " " . "<br>";
-        //  echo '<option value="' . $Id . '">' . $nom_arti . '</option>';
-        //}
+          $punto=$alfab[$i];
 
-       ?>
+          //echo "Letra al Azar " . $punto . "<br>";
+          $letra=$punto;
 
-        </select>
-        <button type="button" name="enviar">Enviar</button>
-<!--      </form>   -->
+        }
+      }
 
-  </body>
-</html>
+      $codigo =  $letra . $numAzar;
+
+      return $codigo;
+}
+
+$idpedido= generarIdPeiddo();
+
+//PENDIENDE DE ESTRAER EL ID DEL CLINETE DESDE verificarCliente
+$idCliente="1033";
+$fecha = generarFecha();
+
+require("DB_files/config.php");
+
+$conexion=mysqli_connect($db_host, $db_usurio, $db_contra);
+
+if(mysqli_connect_errno()){
+
+  echo "Fallo al Conectar con la BBDD";
+
+  exit();
+}
+//DB que queremos conectar
+mysqli_select_db($conexion, $db_nombre) or die ("No se encuentra la BD");
+
+//incluir caracteres altinos
+mysqli_set_charset($conexion, "utf-8");
+
+$sql="INSERT INTO Pedido (Id, Id_Cliente, Fecha)
+    VALUES (?, ?, ?)";
+//Obtener objeto clave
+$resultado=mysqli_prepare($conexion, $sql);
+//unir parametros que el user escribio con la sentecnia SQL
+//La 's' indica que la entrada va a ser tipo text
+//numero = 'i', decimal = 'd'
+//exito = True otherwise = False
+//Si el cuarto campo fuera entero: "sssis"
+$ok=mysqli_stmt_bind_param($resultado, "sss", $idpedido, $idCliente, $fecha);
+//Ejecutar la consulta
+//sobreescribir $ok
+$ok=mysqli_stmt_execute($resultado);
+
+if($ok==false){
+
+  echo "Error al ejecutar la consulta!";
+
+}else{
+
+echo "Se ha Registrado Satisfactoriamente su Pedido!";
+
+mysqli_stmt_close($resultado);
+
+}
+
+ ?>
